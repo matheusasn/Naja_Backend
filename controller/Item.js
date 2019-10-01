@@ -4,10 +4,10 @@ const Item = require('../models/Item');
 const util = require('./Util');
 
 
-router.get('/', (req,res) => {
+router.get('/', (res) => {
     Item.find({}, (err, data) =>{
         if(err) return res.send({error: 'Erro ao consultar item!'});
-        return res.send(data);
+        return res.json(data);
     });
     
 });
@@ -23,7 +23,7 @@ router.post('/criar', (req, res) => {
         
         Item.create(req.body, (err, data) => {
             if (err) res.send({error: 'Erro ao cadastrar Item!'});
-            return res.send(data);
+            return res.json(data);
         });
     });
 });
