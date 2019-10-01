@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const app = express();
+const server = express();
 
 mongoose.connect('mongodb+srv://user_admin:CfWEe82UIIHkQRGf@apicluster-dxpzb.mongodb.net/test?retryWrites=true&w=majority', {
     reconnectTries: Number.MAX_VALUE, 
@@ -22,10 +22,10 @@ mongoose.connection.on('error', (err) => {
 });
 
 
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+server.use(express.json());
+server.use(bodyParser.urlencoded({ extended: false }));
+server.use(bodyParser.json());
 
 
 let port = process.env.PORT || 4444;
-app.listen(port);
+server.listen(port);
