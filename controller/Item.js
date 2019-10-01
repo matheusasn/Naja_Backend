@@ -42,7 +42,7 @@ router.get('/categoria', async (req, res) =>  {
 router.delete('/remove', async (req, res) => {
     const id = req.query.id;
     
-    if(!id) return res.send({error: 'id do Item não encontrado!'});
+    if(!id) return res.json({error: 'id do Item não encontrado!'});
     const item = await Item.findByIdAndDelete(id);
     return res.json(item);
 });
