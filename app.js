@@ -3,9 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const ItemRoutes = require('./routes/ItemRoutes');
-const UserRoutes = require('./routes/UserRoutes');
-
 const server = express();
 
 mongoose.connect('mongodb+srv://user_admin:CfWEe82UIIHkQRGf@apicluster-dxpzb.mongodb.net/test?retryWrites=true&w=majority', {
@@ -26,8 +23,6 @@ mongoose.connection.on('error', (err) => {
 
 
 app.use(express.json());
-app.use(ItemRoutes);
-app.use(UserRoutes);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
