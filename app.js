@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 //Conectado as rotas
-require('./index')(app);
+//require('./index')(app);
 // require('./Item')(app);
 // require('./UserRoute')(app);
 // require('./ProjectControllers')(app);
