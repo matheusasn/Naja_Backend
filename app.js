@@ -25,12 +25,12 @@ mongoose.connection.on('error', (err) => {
 });
 
 
-server.use(express.json());
-server.use(ItemRoutes);
-server.use(UserRoutes);
-server.use(bodyParser.urlencoded({ extended: false }));
-server.use(bodyParser.json());
+app.use(express.json());
+app.use(ItemRoutes);
+app.use(UserRoutes);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 
 let port = process.env.PORT || 4444;
-server.listen(port);
+app.listen(port);
