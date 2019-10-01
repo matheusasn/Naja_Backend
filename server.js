@@ -10,7 +10,7 @@ mongoose.connect('mongodb+srv://user_admin:CfWEe82UIIHkQRGf@apicluster-dxpzb.mon
     useNewUrlParser: true,
     reconnectInterval: 500,
     poolSize: 5,
-    useUnifiedTopology: true 
+    useUnifiedTopology: true
 });
 
 mongoose.connection.on('connected', () => {
@@ -27,9 +27,12 @@ server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
 
-require('./controller/Item')(server);
-require('./controller/UserRoute')(server);
-require('./controller/ProjectControllers')(server);
+const ItemRoutes = require('./controller/Item');
+const UserRoutes = require('./controller/UserRoute');
+const ProjRoutes = require('./controller/ProjectControllers');
 
 let port = process.env.PORT || 4444;
 server.listen(port);
+server.use(ItemRoutes);
+server.use(UserRoutes);
+server.use(ProjRoutes);
