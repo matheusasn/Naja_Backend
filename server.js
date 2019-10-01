@@ -14,11 +14,11 @@ mongoose.connect('mongodb+srv://user_admin:CfWEe82UIIHkQRGf@apicluster-dxpzb.mon
 });
 
 mongoose.connection.on('connected', () => {
-    console.log('Conectado com o banco de dados MLab!');
+    console.log('Servidor rodando...');
 })
 
 mongoose.connection.on('error', (err) => {
-    console.log("Erro na conexão com o banco de dados MLab: " + err);
+    console.log("Erro na conexão: " + err);
 });
 
 
@@ -26,6 +26,10 @@ server.use(express.json());
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
+
+require('./controller/Item')(server);
+require('./controller/UserRoute')(server);
+require('./controller/ProjectControllers')(server);
 
 let port = process.env.PORT || 4444;
 server.listen(port);
