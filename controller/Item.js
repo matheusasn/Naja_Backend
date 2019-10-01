@@ -4,7 +4,7 @@ const Item = require('../models/Item');
 const util = require('./Util');
 
 
-router.get('/', (res) => {
+router.get('/', (req, res) => {
     Item.find({}, (err, data) =>{
         if(err) return res.json({error: 'Erro ao consultar item!'});
         return res.json(data);
@@ -64,7 +64,7 @@ router.put('/atualiza', async (req, res) =>{
 
 });
 
-module.exports = (server) => server.use('/item', router);
+module.exports = router;
 
 
 
