@@ -6,7 +6,7 @@ const util = require('./Util');
 
 router.get('/', (res) => {
     Item.find({}, (err, data) =>{
-        if(err) return res.send({error: 'Erro ao consultar item!'});
+        if(err) return res.json({error: 'Erro ao consultar item!'});
         return res.json(data);
     });
     
@@ -15,14 +15,14 @@ router.get('/', (res) => {
 router.post('/criar', (req, res) => {
     const {nome_item, quantidade_item, categoria_item} = req.query.nome_item.quantidade_item.categoria_item;
 
-    if(!nome_item || !quantidade_item || !categoria_item) return res.send({error: 'Cadastro invalido: Dados insuficientes!'});  
+    if(!nome_item || !quantidade_item || !categoria_item) return res.json({error: 'Cadastro invalido: Dados insuficientes!'});  
     Item.findOne({nome_item}, (err, data)=>{
 
-        if (err) return res.send({error: 'Erro ao buscar item!'});
-        if (data) return res.send({error: 'Item já cadastrado!'});
+        if (err) return res.json({error: 'Erro ao buscar item!'});
+        if (data) return res.json({error: 'Item já cadastrado!'});
         
         Item.create(req.body, (err, data) => {
-            if (err) res.send({error: 'Erro ao cadastrar Item!'});
+            if (err) res.json({error: 'Erro ao cadastrar Item!'});
             return res.json(data);
         });
     });
@@ -31,7 +31,7 @@ router.post('/criar', (req, res) => {
 router.get('/categoria', async (req, res) =>  {
     const categoria_item = req.query.categoria_item;
     if(!categoria_item == 'tvs' || !categoria_item == 'eletrodomésticos' || !categoria_item == 'videogames' || !categoria_item == 'celulares') 
-        return res.send({ error: 'Categoria de item não encontrada' });
+        return res.json({ error: 'Categoria de item não encontrada' });
 
     const itens = await Item.find({ categoria_item });
 
@@ -50,7 +50,7 @@ router.delete('/remove', async (req, res) => {
 router.put('/atualiza', async (req, res) =>{
     const {id, quantidade, tipo} = req.body;
     
-    if(!id) return res.send({error: 'item não encontrado'});
+    if(!id) return res.json({error: 'item não encontrado'});
     
     const item = await Item.findById(id);
 
