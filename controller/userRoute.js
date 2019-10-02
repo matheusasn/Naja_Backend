@@ -13,7 +13,7 @@ function geradorToken(params = {}){
 };
 
 router.post('/register', async (req, res) => {
-    const { email } = req.body;
+    const  email  = req.query.email;
 
     try{    
         if (await User.findOne({email}))
