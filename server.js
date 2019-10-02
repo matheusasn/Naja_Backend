@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
+var cors = require('cors');
 const server = express();
 
 mongoose.connect('mongodb+srv://user_admin:CfWEe82UIIHkQRGf@apicluster-dxpzb.mongodb.net/test?retryWrites=true&w=majority', {
@@ -25,7 +25,7 @@ mongoose.connection.on('error', (err) => {
 server.use(express.json());
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
-
+server.use(cors());
 
 const ItemRoutes = require('./controller/Item');
 const UserRoutes = require('./controller/userRoute');
