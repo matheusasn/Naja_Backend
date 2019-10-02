@@ -28,11 +28,11 @@ server.use(bodyParser.json());
 
 
 const ItemRoutes = require('./controller/Item');
-//const UserRoutes = require('./controller/UserRoute');
-//const ProjRoutes = require('./controller/ProjectControllers');
+const UserRoutes = require('./controller/userRoute');
+const ProjRoutes = require('./controller/projectControllers');
 
 let port = process.env.PORT || 4444;
 server.listen(port);
 server.use(ItemRoutes);
-//server.use(UserRoutes);
-//server.use(ProjRoutes);
+server.use(UserRoutes);
+server.use(ProjRoutes);
