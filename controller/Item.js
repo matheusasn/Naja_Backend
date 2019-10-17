@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/criar', (req, res) => {
-    const {nome_item, quantidade_item, categoria_item} = req.body;
+    const {nome_item, quantidade_item, categoria_item, imagem} = req.body;
 
     if(!nome_item || !quantidade_item || !categoria_item) return res.json({error: 'Cadastro invalido: Dados insuficientes!'});  
     Item.findOne({nome_item}, (err, data)=>{
